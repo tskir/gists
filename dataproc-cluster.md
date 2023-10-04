@@ -4,7 +4,8 @@ export INSTANCE_NAME=
 
 # 1. Prepare a startup script
 cat << STARTUP >/tmp/startup-script
-sudo apt updatesudo apt upgrade
+sudo apt update
+sudo apt upgrade
 sudo apt install -y jupyter-core jupyter-notebook jupyter-client
 sudo useradd jupyter || true
 sudo mkdir /home/jupyter || true
