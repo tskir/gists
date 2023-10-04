@@ -4,8 +4,7 @@ export INSTANCE_NAME=
 
 # 1. Prepare a startup script
 cat << STARTUP >/tmp/startup-script
-sudo apt update
-sudo apt upgrade
+sudo apt updatesudo apt upgrade
 sudo apt install -y jupyter-core jupyter-notebook
 sudo useradd jupyter || true
 sudo mkdir /home/jupyter || true
@@ -14,6 +13,8 @@ sudo -u jupyter rm -f /home/jupyter/.jupyter/jupyter_notebook_config.py
 sudo -u jupyter jupyter notebook --generate-config
 sudo cat /home/jupyter/.jupyter/jupyter_notebook_config.py > /tmp/config.py
 cat << CONFIG >> /tmp/config.py
+import os
+os.environ['SHELL'] = '/bin/bash'
 c = get_config()
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
